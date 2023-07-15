@@ -129,7 +129,7 @@ function Header(props) {
                         <Button
                             color="error"
                             variant='contained'
-                            onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
+                            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                         >
                             Logout
                         </Button>
@@ -191,7 +191,7 @@ function Header(props) {
                                 <Button
                                     color="error"
                                     variant='contained'
-                                    onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
+                                    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                                 >
                                     Logout
                                 </Button>
