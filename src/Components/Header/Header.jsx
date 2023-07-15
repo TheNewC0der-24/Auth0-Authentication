@@ -51,15 +51,11 @@ const drawerWidth = 240;
 const navItems = [
     {
         label: "Home",
-        link: "/"
+        link: "/home"
     },
     {
         label: "About Us",
         link: "/about"
-    },
-    {
-        label: "Pricing",
-        link: "/pricing"
     },
     {
         label: "Contact Us",
@@ -84,13 +80,6 @@ function Header(props) {
     const handleDrawerClose = () => {
         setMobileOpen((prevState) => !prevState)
     }
-
-    const withoutNavigationBar = ["/login"];
-    const { pathname } = useLocation();
-    if (withoutNavigationBar.some((item) => pathname.includes(item))) {
-        return null;
-    }
-
 
     const drawer = (
         <Box
@@ -126,7 +115,7 @@ function Header(props) {
                 <Button
                     color="primary"
                     variant='contained'
-                    onClick={() => navigate("/login")}
+                // onClick={() => navigate("/login")}
                 >
                     Login
                 </Button>
