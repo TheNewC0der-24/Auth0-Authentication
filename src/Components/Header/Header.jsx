@@ -71,7 +71,7 @@ function Header(props) {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+    const { logout, user, isAuthenticated } = useAuth0();
 
     const classes = useStyles();
 
@@ -85,6 +85,13 @@ function Header(props) {
     const handleDrawerClose = () => {
         setMobileOpen((prevState) => !prevState)
     }
+
+    const withoutNavigationBar = ["/welcome"];
+    const { pathname } = useLocation();
+    if (withoutNavigationBar.some((item) => pathname.includes(item))) {
+        return null;
+    }
+
 
     const drawer = (
         <Box
@@ -118,21 +125,13 @@ function Header(props) {
             <Divider />
             <Box mt={2}>
                 {
-                    isAuthenticated ? (
+                    isAuthenticated && (
                         <Button
                             color="error"
                             variant='contained'
                             onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
                         >
                             Logout
-                        </Button>
-                    ) : (
-                        <Button
-                            color="primary"
-                            variant='contained'
-                            onClick={() => loginWithRedirect()}
-                        >
-                            Login
                         </Button>
                     )
                 }
@@ -188,21 +187,13 @@ function Header(props) {
                     }
                     <Box mx={2}>
                         {
-                            isAuthenticated ? (
+                            isAuthenticated && (
                                 <Button
                                     color="error"
                                     variant='contained'
                                     onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
                                 >
                                     Logout
-                                </Button>
-                            ) : (
-                                <Button
-                                    color="primary"
-                                    variant='contained'
-                                    onClick={() => loginWithRedirect()}
-                                >
-                                    Login
                                 </Button>
                             )
                         }
