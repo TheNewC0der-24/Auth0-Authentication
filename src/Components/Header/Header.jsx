@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 // react-router-dom
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useAuth0 } from '@auth0/auth0-react';
+
 import PropTypes from 'prop-types';
 
 // Material Components
@@ -68,6 +70,8 @@ function Header(props) {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const { loginWithRedirect } = useAuth0();
+
     const classes = useStyles();
 
     const { window } = props;
@@ -115,7 +119,7 @@ function Header(props) {
                 <Button
                     color="primary"
                     variant='contained'
-                // onClick={() => navigate("/login")}
+                    onClick={() => loginWithRedirect()}
                 >
                     Login
                 </Button>
@@ -165,7 +169,7 @@ function Header(props) {
                         <Button
                             color="primary"
                             variant='contained'
-                            onClick={() => navigate("/login")}
+                            onClick={() => loginWithRedirect()}
                         >
                             Login
                         </Button>
