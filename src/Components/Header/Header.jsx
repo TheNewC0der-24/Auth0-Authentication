@@ -22,6 +22,7 @@ import {
     Toolbar,
     Typography,
     Button,
+    Avatar,
 } from '@mui/material';
 
 // Material Icon
@@ -70,7 +71,7 @@ function Header(props) {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { loginWithRedirect } = useAuth0();
+    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
     const classes = useStyles();
 
@@ -116,13 +117,25 @@ function Header(props) {
             </List>
             <Divider />
             <Box mt={2}>
-                <Button
-                    color="primary"
-                    variant='contained'
-                    onClick={() => loginWithRedirect()}
-                >
-                    Login
-                </Button>
+                {
+                    isAuthenticated ? (
+                        <Button
+                            color="error"
+                            variant='contained'
+                            onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
+                        >
+                            Logout
+                        </Button>
+                    ) : (
+                        <Button
+                            color="primary"
+                            variant='contained'
+                            onClick={() => loginWithRedirect()}
+                        >
+                            Login
+                        </Button>
+                    )
+                }
             </Box>
         </Box>
     );
@@ -164,15 +177,35 @@ function Header(props) {
                             </Typography>
                         ))}
                     </Box>
-
+                    {
+                        isAuthenticated && (
+                            <Box sx={{ ml: 2 }}>
+                                <Avatar>
+                                    {user?.name?.charAt(0)}
+                                </Avatar>
+                            </Box>
+                        )
+                    }
                     <Box mx={2}>
-                        <Button
-                            color="primary"
-                            variant='contained'
-                            onClick={() => loginWithRedirect()}
-                        >
-                            Login
-                        </Button>
+                        {
+                            isAuthenticated ? (
+                                <Button
+                                    color="error"
+                                    variant='contained'
+                                    onClick={() => logout({ logoutParams: { returnTo: "http://localhost:3000/" } })}
+                                >
+                                    Logout
+                                </Button>
+                            ) : (
+                                <Button
+                                    color="primary"
+                                    variant='contained'
+                                    onClick={() => loginWithRedirect()}
+                                >
+                                    Login
+                                </Button>
+                            )
+                        }
                     </Box>
                 </Toolbar>
             </AppBar>
