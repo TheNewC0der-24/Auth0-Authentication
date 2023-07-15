@@ -129,7 +129,7 @@ function Header(props) {
                         <Button
                             color="error"
                             variant='contained'
-                            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                            onClick={() => logout({ logoutParams: { returnTo: "https://auth0-authentication.vercel.app/welcome" } })}
                         >
                             Logout
                         </Button>
@@ -191,7 +191,7 @@ function Header(props) {
                                 <Button
                                     color="error"
                                     variant='contained'
-                                    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                                    onClick={() => logout({ logoutParams: { returnTo: "https://auth0-authentication.vercel.app/welcome" } })}
                                 >
                                     Logout
                                 </Button>
