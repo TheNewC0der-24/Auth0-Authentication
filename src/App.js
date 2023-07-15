@@ -7,8 +7,6 @@ import {
   Navigate
 } from "react-router-dom";
 
-import { useAuth0 } from '@auth0/auth0-react';
-
 // Components
 import Header from './Components/Header/Header';
 import Welcome from './Components/Welcome';
@@ -20,16 +18,15 @@ import Contact from './Pages/ContactUs/Contact';
 
 function App() {
 
-  const { isAuthenticated } = useAuth0();
-
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/home" element={isAuthenticated ? <Home /> : <Navigate to="/" replace />} />
-        <Route path="/about" element={isAuthenticated ? <About /> : <Navigate to="/" replace />} />
-        <Route path="/contact" element={isAuthenticated ? <Contact /> : <Navigate to="/" replace />} />
+        <Route path="/" element={<Navigate to="/welcome" replace />} />
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
