@@ -1,5 +1,5 @@
 {
-  "name": "matrimonial",
+  "name": "auth0-authentication",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
