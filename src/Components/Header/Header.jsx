@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-
-// react-router-dom
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 import { useAuth0 } from '@auth0/auth0-react';
-
 import PropTypes from 'prop-types';
-
-// Material Components
 import {
     AppBar,
     Box,
@@ -24,11 +18,7 @@ import {
     Button,
     Avatar,
 } from '@mui/material';
-
-// Material Icon
 import MenuIcon from '@mui/icons-material/Menu';
-
-// Material Styles
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
@@ -51,6 +41,7 @@ const useStyles = makeStyles({
 })
 
 const drawerWidth = 240;
+
 const navItems = [
     {
         label: "Home",
@@ -92,7 +83,6 @@ function Header(props) {
         return null;
     }
 
-
     const drawer = (
         <Box
             onClick={handleDrawerToggle}
@@ -105,15 +95,15 @@ function Header(props) {
             <List>
                 {navItems.map((item, index) => (
                     <ListItem
-                        key={index}
+                        key={index + 1}
                         disablePadding
                         className={
                             location.pathname === item.link ? classes.mobileLinkActive : null
                         }
                         onClick={() => {
                             navigate(item.link);
-                            handleDrawerToggle(item.link);
-                            handleDrawerClose(false);
+                            handleDrawerToggle();
+                            handleDrawerClose();
                         }}
                     >
                         <ListItemButton sx={{ textAlign: 'center' }}>
@@ -139,7 +129,7 @@ function Header(props) {
         </Box>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    const container = window === undefined ? undefined : () => window().document.body;
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -166,7 +156,7 @@ function Header(props) {
                     >
                         {navItems.map((item, index) => (
                             <Typography
-                                key={index}
+                                key={index + 1}
                                 className={
                                     location.pathname === item.link ? classes.linkActive : classes.link
                                 }
@@ -225,10 +215,6 @@ function Header(props) {
 }
 
 Header.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window: PropTypes.func,
 };
 

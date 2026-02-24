@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Grid, Typography } from '@mui/material';
 
@@ -24,7 +24,7 @@ const Home = () => {
                     </Button>
                 </Grid>
                 <Grid item xs={12} sm={6} md={5} sx={{ margin: "auto" }}>
-                    <img src={image} alt="image" style={{ width: "100%", maxWidth: "400px" }} />
+                    <img src={image} alt="banner-image" style={{ width: "100%", maxWidth: "400px" }} />
                 </Grid>
             </Grid>
         </Box>
